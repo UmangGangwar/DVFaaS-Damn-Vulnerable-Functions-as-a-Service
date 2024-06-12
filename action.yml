@@ -1,0 +1,37 @@
+#
+# Forked from  Joel-hanson/bandit-report-artifacts
+#
+name: "python-bandit with code annotations"
+description: "Github action to find common security issues in Python code and get its report as a artifact."
+author: "robipolli@gmail.com"
+
+inputs:
+  project_path:
+    description: "This is the path at which the your python project is located in you github repo."
+    required: false
+    default: "."
+
+  ignore_failure:
+    description: "This is to ignore the security failures and pass the check."
+    required: false
+    default: false
+
+  config_file:
+    description: "The yaml config file to use"
+    required: false
+    default: ""
+
+  repo_token:
+    required: true
+    description: |
+      The GitHub App installation access token.
+      [Learn more about `GITHUB_TOKEN`](https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token#about-the-github_token-secret)
+    default: ${{ github.token }}
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+
+branding:
+  icon: "shield"
+  color: "gray-dark"
